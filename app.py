@@ -188,21 +188,16 @@ def main():
                      text=top_directors['IMDB_Rating'].round(2),  # Display IMDb rating inside bars
                      )
 
-        # Customize layout and appearance
-        # fig.update_layout(plot_bgcolor='rgb(30, 30, 30)', paper_bgcolor='rgb(30, 30, 30)',
-        #                   font_color='white', title_font_color='white')
-
         st.plotly_chart(fig)
 
-    # Additional content
+    # Additional insights
     st.header("Additional Insights")
-    # Example of additional content (you can add more as needed)
     st.subheader("Genre Distribution")
     genre_distribution = df['Genre'].explode().value_counts().reset_index()
-    genre_distribution.columns = ['Genre', 'Count']  # Rename columns for clarity
+    genre_distribution.columns = ['Genre', 'Count']
     st.bar_chart(genre_distribution, x='Genre', y='Count', color='Genre', height=400)
 
-    # Adjusted code for rating distribution histogram
+    # Rating distribution histogram
     st.subheader("Rating Distribution")
     fig_rating = px.histogram(df, x='IMDB_Rating', nbins=20, color='IMDB_Rating', title='Distribution of IMDB Ratings')
     st.plotly_chart(fig_rating)
